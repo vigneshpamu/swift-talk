@@ -21,9 +21,10 @@ const AuthForm = () => {
 
   useEffect(() => {
     if (session?.status === 'authenticated') {
-      console.log('Authenticated')
+      // console.log('Authenticated')
+      router.push('/users')
     }
-  }, [session?.status])
+  }, [session?.status, router])
 
   const toggleVariant = useCallback(() => {
     if (variant === 'LOGIN') {
@@ -51,12 +52,12 @@ const AuthForm = () => {
     if (variant === 'REGISTER') {
       axios
         .post('/api/register', data)
-        //  .then(() =>
-        //    signIn('credentials', {
-        //      ...data,
-        //      redirect: false,
-        //    })
-        //  )
+        .then(() =>
+          signIn('credentials', {
+            ...data,
+            redirect: false,
+          })
+        )
         //  .then((callback) => {
         //    if (callback?.error) {
         //      toast.error('Invalid credentials!')
@@ -83,6 +84,7 @@ const AuthForm = () => {
           if (callback?.ok && !callback?.error) {
             // router.push('/conversations')
             toast.success('Logged in')
+            router.push('/users')
           }
         })
         .finally(() => setIsLoading(false))
