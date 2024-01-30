@@ -13,13 +13,13 @@ import ConversationBox from './ConversationBox'
 import GroupChatModal from './GroupChatModal'
 interface ConversationListProps {
   initialItems: FullConversationType[]
-  //   users: User[]
+  users: User[]
   //   title?: string
 }
 
 const ConversationList: React.FC<ConversationListProps> = ({
   initialItems,
-  //   users,
+  users,
 }) => {
   const [items, setItems] = useState(initialItems)
   const [isModalOpen, setIsModalOpen] = useState(false)
@@ -31,7 +31,7 @@ const ConversationList: React.FC<ConversationListProps> = ({
   return (
     <>
       <GroupChatModal
-        // users={users}
+        users={users}
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
       />
